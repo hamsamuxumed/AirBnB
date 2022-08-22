@@ -7,7 +7,7 @@ export const AnywhereCard = ({ img, title }) => {
         <Image src={img} className=" rounded-xl" layout="fill" />
       </div>
       <div>
-        <h3 className="text-2xl mt-3 ">{title}</h3>
+        <h3 className="text-2xl mt-3 ">{title} </h3>
       </div>
     </div>
   );
