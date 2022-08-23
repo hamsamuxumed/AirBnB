@@ -1,6 +1,12 @@
 import type { NextPage } from "next";
 import Head from "next/head";
-import { Header, Banner, SmartCard, AnywhereCard } from "../components";
+import {
+  Header,
+  Banner,
+  SmartCard,
+  AnywhereCard,
+  LargeCard,
+} from "../components";
 
 // interface Props {
 //   exploreData: [];
@@ -12,6 +18,7 @@ interface fetchDataTypes {
   location: string;
   img: string;
   distance: string;
+  buttonTest: string;
 }
 
 const Home: NextPage = ({ exploreData, cardsData }) => {
@@ -51,6 +58,17 @@ const Home: NextPage = ({ exploreData, cardsData }) => {
                   title={item.title}
                 />
               ))}
+            </div>
+          </section>
+
+          <section>
+            <div className="">
+              <LargeCard
+                img="https://links.papareact.com/4cj"
+                title="The Greatest Outdoors"
+                description="Wishlists curated by Airbnb"
+                buttonText="Get Inspired"
+              />
             </div>
           </section>
         </section>
