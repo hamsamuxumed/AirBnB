@@ -3,3 +3,4 @@ export { Header } from "./Header";
 export { SmartCard } from "./SmartCard";
 export { AnywhereCard } from "./AnywhereCard";
 export { LargeCard } from "./LargeCard";
+export { Footer } from "./Footer";

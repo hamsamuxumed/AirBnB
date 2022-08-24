@@ -1,4 +1,5 @@
-import type { NextPage } from "next";
+import type { GetStaticProps } from "next";
+import { CardsDataType, ExploreDataType } from "../typings";
 import Head from "next/head";
 import {
   Header,
@@ -6,22 +7,15 @@ import {
   SmartCard,
   AnywhereCard,
   LargeCard,
+  Footer,
 } from "../components";
 
-// interface Props {
-//   exploreData: [];
-//   cardsData: [];
-// }
-
-interface fetchDataTypes {
-  title: string;
-  location: string;
-  img: string;
-  distance: string;
-  buttonTest: string;
+interface Props {
+  exploreData: ExploreDataType[];
+  cardsData: CardsDataType[];
 }
 
-const Home: NextPage = ({ exploreData, cardsData }) => {
+const Home = ({ exploreData, cardsData }: Props) => {
   return (
     <div className="">
       <Head>
@@ -37,7 +31,7 @@ const Home: NextPage = ({ exploreData, cardsData }) => {
           <h2 className="text-4xl font-semibold pb-5">Explore Nearby</h2>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg-grid-cols-3 xl:grid-cols-4">
-            {exploreData?.map((item: fetchDataTypes) => (
+            {exploreData?.map((item) => (
               <SmartCard
                 key={item.img}
                 img={item.img}
@@ -51,7 +45,7 @@ const Home: NextPage = ({ exploreData, cardsData }) => {
             <h2 className="text-4xl font-semibold py-8 pb-5">Live Anywhere</h2>
 
             <div className="flex space-x-4 overflow-scroll scrollbar-hide p-3 -ml-3">
-              {cardsData?.map((item: fetchDataTypes) => (
+              {cardsData?.map((item) => (
                 <AnywhereCard
                   key={item.img}
                   img={item.img}
@@ -61,25 +55,22 @@ const Home: NextPage = ({ exploreData, cardsData }) => {
             </div>
           </section>
 
-          <section>
-            <div className="">
-              <LargeCard
-                img="https://links.papareact.com/4cj"
-                title="The Greatest Outdoors"
-                description="Wishlists curated by Airbnb"
-                buttonText="Get Inspired"
-              />
-            </div>
-          </section>
+          <LargeCard
+            img="https://links.papareact.com/4cj"
+            title="The Greatest Outdoors"
+            description="Wishlists curated by Airbnb"
+            buttonText="Get Inspired"
+          />
         </section>
       </main>
+      <Footer />
     </div>
   );
 };
 
 export default Home;
 
-export async function getStaticProps() {
+export const getStaticProps: GetStaticProps = async () => {
   const exploreData = await fetch("https://links.papareact.com/pyp")
     .then((resp) => resp.json())
     .catch((err) => err.message);
@@ -95,4 +86,4 @@ export async function getStaticProps() {
       cardsData,
     },
   };
-}
+};
